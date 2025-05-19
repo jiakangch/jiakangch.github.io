@@ -1,0 +1,620 @@
+/* Fonts */
+
+@font-face {
+	font-family: "Ubuntu Mono Regular";
+	src: url("../fonts/UbuntuMono-R.ttf");
+}
+
+@font-face {
+	font-family: "Ubuntu Mono Bold";
+	src: url("../fonts/UbuntuMono-B.ttf");
+}
+
+@font-face {
+	font-family: "Ubuntu Mono Italic";
+	src: url("../fonts/UbuntuMono-RI.ttf");
+}
+
+@font-face {
+	font-family: "Ubuntu Mono Bold Italic";
+	src: url("../fonts/UbuntuMono-BI.ttf");
+}
+
+@font-face {
+	font-family: "Symbols Nerd Font Mono Regular";
+	src: url("../fonts/SymbolsNerdFontMono-Regular.ttf");
+}
+
+html {
+	height: 100%;
+	width: 100%;
+
+	overflow: hidden;
+}
+
+* {
+	font-family: "Ubuntu Mono Regular";
+
+	font-size: 13px;
+
+	margin: 0;
+	padding: 0;
+
+	/* Safari likes to make enlarge text */
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+
+	overflow: hidden;
+	position: fixed;
+}
+
+#background {
+	position: absolute;
+
+	transform: translateY(-50%) translateX(-50%);
+
+	top: 50%;
+	left: 50%;
+
+	height: 126%;
+	width: 126%;
+
+	perspective: 2000px;
+
+	z-index: -1;
+}
+
+#background::after {
+	position: absolute;
+
+	transform: translateY(-50%) translateX(-50%);
+
+	top: 50%;
+	left: 50%;
+
+	width: 100%;
+	height: 100%;
+
+	content: "";
+	backdrop-filter: blur(5px);
+}
+
+#wallpaper {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+	background: rgba(209, 188, 138, 0.39);
+
+	background-size: contain;
+	background-position: bottom;
+	background-repeat: no-repeat;
+
+	transform-style: preserve-3d;
+	will-change: transform;
+	transition: transform 1.3s cubic-bezier(0, 0.55, 0.45, 1);
+	transform-origin: center;
+	z-index: -1;
+}
+
+/* old grid (lag on mobile devices)
+
+#major_grid {
+	position: absolute;
+
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+
+	background-size: 5rem 5rem;
+	background-image:
+	linear-gradient(to right, rgba(0, 0, 0, 0.39) 0.13px, transparent 1px),
+	linear-gradient(to bottom, rgba(0, 0, 0, 0.39) 0.13px, transparent 1px);
+}
+
+#minor_grid {
+	position: absolute;
+
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+
+	background-size: 1rem 1rem;
+	background-image:
+	linear-gradient(to right, rgba(0, 0, 0, 0.13) 0.13px, transparent 1px),
+	linear-gradient(to bottom, rgba(0, 0, 0, 0.13) 0.13px, transparent 1px);
+}
+
+*/
+
+canvas {
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -webkit-crisp-edges;
+	image-rendering: pixelated;
+	image-rendering: crisp-edges;
+}
+
+.boop {
+	position: absolute;
+
+	/* filler size */
+	width: 0rem;
+	height: 0rem;
+
+	margin: 0;
+
+	border-radius: 100%;
+
+	background: rgba(255, 255, 255, 1);
+}
+
+.jiakangchen {
+	position: fixed;
+
+	display: none;
+
+	font-size: 6vw;
+
+	left: 50%;
+	top: 45%;
+
+	transform: translateY(-50%) translateX(-50%);
+
+	text-align: center;
+
+	font-family: "Ubuntu Mono Bold";
+
+	color: rgba(220, 5, 44, 1);
+
+	text-shadow: 1px;
+
+	opacity: 0;
+}
+
+/*.jiakangchen {
+	position: fixed;
+
+	font-size: 4vw;
+
+	left: 50%;
+	top: 45%;
+
+	transform: translateY(-50%) translateX(-50%);
+
+	text-align: center;
+
+	color: rgba(220, 5, 44, 1);
+
+	text-shadow: 1px;
+}*/
+
+.button::before {
+	content: "";
+
+	position: absolute;
+	
+	transform: translateY(-50%) translateX(-50%);
+
+	top: 50%;
+	left: 50%;
+
+	border-style: solid;
+	border-width: 0rem;
+	border-color: rgba(255, 255, 255, 1);
+
+	border-radius: 100%;
+
+	-webkit-user-select: none;	/* Chrome, Safari, Opera */
+	-moz-user-select: none;		/* Firefox */
+	-ms-user-select: none;		/* Internet Explorer/Edge */
+	user-select: none;			/* Standard syntax */
+}
+
+.button {
+	position: absolute;
+	
+	justify-content: center;
+
+	display: flex;
+
+	align-self: center;
+
+	align-items: center;
+
+	font-size: 5vmin;
+
+	cursor: pointer;
+
+	background-color: rgba(0, 0, 0, 0);
+
+	-webkit-user-select: none;	/* Chrome, Safari, Opera */
+	-moz-user-select: none;		/* Firefox */
+	-ms-user-select: none;		/* Internet Explorer/Edge */
+	user-select: none;			/* Standard syntax */
+}
+
+.play {
+	left: 50%;
+	top: 45%;
+
+	border-radius: 0%;
+
+	font-family: "Symbols Nerd Font Mono Regular";
+
+	font-size: min(6vw, 6vh);
+
+	color: rgba(0, 0, 0, 1);
+
+	transform: translateY(-50%) translateX(-50%);
+}
+
+.play:hover {
+	color: rgba(220, 5, 44, 1);
+}
+
+.menu_container {
+	position: absolute;
+
+	display: flex;
+
+	justify-content: center;
+
+	right: min(8vw, 8vh);
+	top: min(8vw, 8vh);
+}
+
+.menu_icon {
+	display: none;
+
+	opacity: 0;
+
+	font-size: 5vmin;
+
+	color: rgba(0, 0, 0, 0.5);
+
+	font-family: Symbols Nerd Font Mono Regular;
+}
+
+.menu {
+	position: absolute;
+	
+	display: none;
+
+	left: 50%;
+	top: 50%;
+
+	width: min(70vw, 70vh);
+	height: min(70vw, 70vh);
+
+	transform: translateY(-50%) translateX(-50%);
+	
+	opacity: 0;
+}
+
+table.entries {
+	position: absolute;
+
+	width: 100%;
+	height: 100%;
+
+	border-spacing: min(3vw, 3vh);
+
+	color: rgba(0, 0, 0, 1.0);
+}
+
+td.entry_data {
+	position: relative;
+
+	width: 33.333%;
+}
+
+.entry {
+	position: absolute;
+
+	text-align: center;
+	vertical-align: middle;
+
+	align-content: center;
+
+	font-size: min(4vw, 4vh);
+
+	transform: translateY(-50%) translateX(-50%);
+
+	top: 50%;
+	left: 50%;
+
+	width: 100%;
+	height: 100%;
+
+	border-style: solid;
+	border-width: min(0.5vw, 0.5vh);
+	border-color: rgba(0, 0, 0, 1.0);
+}
+
+.entry:hover {
+	color: rgba(255, 255, 255, 1.0);
+}
+
+.entry::before {
+	content: "";
+
+	position: absolute;
+
+	background-color: rgba(220, 5, 44, 1);
+
+	transform: translateY(-50%) translateX(-50%);
+
+	top: 50%;
+	left: 50%;
+
+	width: 0%;
+	height: 0%;
+
+	z-index: -1;
+}
+
+.header {
+	position: absolute;
+
+	font-size: min(2.5vw, 2.5vh);
+
+	top: 5%;
+	left: 5%;
+}
+
+.title {
+	font-size: min(6vw, 6vh);
+
+	font-family: "Ubuntu Mono Bold";
+}
+
+.subtitle {
+	font-size: min(2.5vw, 2.5vh);
+}
+
+.window {
+	position: absolute;
+
+	display: none;
+
+	transform: translateY(-50%) translateX(-50%);
+
+	left: 50%;
+	top: 55%;
+
+	width: 95%;
+	height: 90%;
+
+	opacity: 0;
+}
+
+table.panels {
+	width: 100%;
+	height: 100%;
+
+	border-spacing: min(8vw, 8vh);
+}
+
+tr.tab_row {
+	height: min(6vw, 6vh);
+}
+
+.tab {
+	position: absolute;
+
+	transform: translateY(-50%) translateX(-50%);
+
+	left: 50%;
+
+	display: flex;
+	align-items: center;
+
+	width: 100%;
+	height: 100%;
+
+	border-style: solid;
+	border-width: 0.1rem;
+	border-color: rgba(255, 255, 255, 0.13);
+
+	font-size: 6vmin;
+
+	font-family: "Ubuntu Mono Bold";
+
+	color: rgba(0, 0, 0, 1.0);
+
+	padding: min(2.5vw, 2.5vh);
+}
+
+.main {
+	position: absolute;
+
+	transform: translateY(-50%) translateX(-50%);
+
+	left: 50%;
+
+	width: 100%;
+	height: 100%;
+
+	border-style: solid;
+	border-width: 0.1rem;
+	border-color: rgba(255, 255, 255, 0.13);
+
+/*	backdrop-filter: blur(0.5px);*/
+
+	color: rgba(0, 0, 0, 1.0);
+
+	line-height: 4vmin;
+}
+
+.display {
+	position: absolute;
+
+	transform: translateY(-50%) translateX(-50%);
+
+	left: 50%;
+
+	width: 100%;
+	height: 100%;
+
+	border-style: solid;
+	border-width: 0.1rem;
+	border-color: rgba(255, 255, 255, 0.13);
+
+	color: rgba(0, 0, 0, 1.0);
+
+	line-height: 4vmin;
+}
+
+td {
+	position: relative;
+}
+
+.curtain {
+	position: absolute;
+
+	display: none;
+
+	transform: translateY(-50%) translateX(-50%);
+
+	border-style: solid;
+	border-width: max(100vw, 100vh);
+	border-radius: 100%;
+
+	color: rgba(0, 0, 0, 1.0);
+
+	will-change: width, height;
+}
+
+.connection {
+	position: relative;
+
+	font-size: 100%;
+
+	color: rgba(0, 0, 0, 1.0);
+
+	background-color: rgba(0, 0, 0, 0);
+
+	font-family: 'Symbols Nerd Font Mono Regular';
+
+	padding: 2.6vmin;
+
+	border-radius: 100%;
+
+	box-shadow: 0px 5px 26px 0px rgba(0, 0, 0, 0.13), 0px -5px 26px 0px rgba(0, 0, 0, 0.13), 5px 0px 26px 0px rgba(0, 0, 0, 0.13), -5px 0px 26px 0px rgba(0, 0, 0, 0.13);
+
+	margin-left: 1vw;
+	margin-right: 1vw;
+}
+
+.connection:hover {
+	font-size: 100%;
+
+	color: rgba(255, 255, 255, 1.0);
+
+	font-family: 'Symbols Nerd Font Mono Regular';
+}
+
+.connection::before {
+	content: "";
+
+	position: absolute;
+
+	background-color: rgba(220, 5, 44, 1);
+
+	border-radius: 100%;
+
+	top: 50%;
+	left: 50%;
+
+	transform: translateY(-50%) translateX(-50%);
+
+	width: 0%;
+	height: 0%;
+
+	z-index: -1;
+}
+
+.highlight {
+	font-size: 100%;
+
+	color: rgba(220, 5, 44, 1);
+
+/*	background-color: var(--background-color);*/
+
+	padding: 0.75vmin;
+
+	font-family: "Ubuntu Mono Bold";
+}
+
+.highlight:hover {
+	font-size: 100%;
+
+	color: rgba(255, 255, 255, 1.0);
+
+	background-color: rgba(220, 5, 44, 1);
+
+	font-family: "Ubuntu Mono Bold";
+}
+
+enchant {
+	font-size: 100%;
+
+	color: rgba(220, 5, 44, 1);
+
+	font-family: "Ubuntu Mono Bold";
+}
+
+enchant:hover {
+	text-decoration: underline;
+
+	text-decoration-style: wavy;
+
+	text-decoration-color: rgba(220, 5, 44, 1);
+
+	text-decoration-thickness: 0.2vmin;
+
+	text-underline-offset: 0.52vmin;
+}
+
+underline {
+	font-size: 100%;
+
+	color: rgba(0, 0, 0, 1.0);
+
+	text-decoration: underline;
+
+	text-decoration-style: wavy;
+
+	text-decoration-color: rgba(220, 5, 44, 0.52);
+
+	text-decoration-thickness: 0.2vmin;
+
+	text-underline-offset: 0.52vmin;
+}
+
+underline:hover {
+	font-size: 100%;
+
+	color: rgba(0, 0, 0, 1.0);
+
+	text-decoration-color: rgba(220, 5, 44, 1);
+}
+
+italicize {
+	font-size: 100%;
+
+	color: rgba(0, 0, 0, 1.0);
+
+	font-family: "Ubuntu Mono Italic";
+}
+
+a {
+	text-decoration: none;
+}
+
