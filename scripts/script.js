@@ -106,7 +106,7 @@ async function run() {
 
 	fade_in(document.getElementById("jiakangchen"), 1000);
 
-	document.getElementById("<3").play();
+	// document.getElementById("<3").play();
 
 	await sleep(1000);
 
